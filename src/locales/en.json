@@ -1,0 +1,75 @@
+{
+  "message": {
+    "welcome": "Hello LogDash"
+  },
+  "common": {
+    "filter": {
+      "label": "FILTER"
+    },
+    "table": { "options": { "display_column": "Column dsplay options" } }
+  },
+  "menu_labels": {
+    "format": "Format",
+    "apply": "Apply"
+  },
+  "button": {
+    "login": "Login",
+    "cancel": "Cancel",
+    "save": "Save",
+    "add": "Add",
+    "create": "Create",
+    "update": "Update",
+    "confirm": "Confirm",
+    "close": "Close"
+  },
+  "login": {
+    "title": "Login",
+    "error": "Your username or password is incorrect."
+  },
+  "format": {
+    "list": {
+      "label": "ActionLogFormat list",
+      "actions": {
+        "create_version": {
+          "label": "Add {versionLabel}"
+        }
+      },
+      "buttons": {
+        "select_version": {
+          "label": "",
+          "tooltip": "選択したバージョンのフォーマットが表示されます。\n[{versionLabel}]で新しいバージョンを作成することができます。"
+        },
+        "add_action": {
+          "tooltip": "新しい{action}を追加します。\n{action}を追加できるのはDraft版のみです。",
+          "label": "{action}を作成"
+        }
+      },
+      "banner": {
+        "draft_version": "This version is a Draft version. Approval is required to create the official version."
+      }
+    },
+    "approve_status": {
+      "label": "申請ステータス"
+    },
+    "search": {
+      "label": "Search",
+      "label2": "ActionTypeId / Name で検索"
+    }
+  },
+  "apply": {
+    "list": {
+      "label": "承認ステータス"
+    },
+    "form": {
+      "description": "バージョン {version} の登録申請を行います。\nアクション毎にコメントを追加できます。例: 'sampleKey'を追加した",
+      "placeholder": {
+        "comment": "Please write the details of this change."
+      }
+    },
+    "messages": {
+      "create_apply": "New apply",
+      "cancel": "Cancel apply",
+      "no_comment": "There is no comment yet."
+    }
+  }
+}

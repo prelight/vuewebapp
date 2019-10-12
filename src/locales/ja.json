@@ -1,0 +1,75 @@
+{
+  "message": {
+    "welcome": "ようこそ、LogDash"
+  },
+  "common": {
+    "filter": {
+      "label": "フィルタ"
+    },
+    "table": { "options": { "display_column": "表示カラムの設定" } }
+  },
+  "menu_labels": {
+    "format": "Format一覧",
+    "apply": "登録申請"
+  },
+  "button": {
+    "login": "ログイン",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "add": "追加",
+    "create": "作成",
+    "update": "更新",
+    "confirm": "確認",
+    "close": "閉じる"
+  },
+  "login": {
+    "title": "ログイン",
+    "error": "ユーザー名またはパスワードが間違っています。"
+  },
+  "format": {
+    "list": {
+      "label": "ActionLogFormat一覧",
+      "actions": {
+        "create_version": {
+          "label": "新しい{versionLabel}を追加"
+        }
+      },
+      "buttons": {
+        "select_version": {
+          "label": "",
+          "tooltip": "選択したバージョンのフォーマットが表示されます。\n[{versionLabel}]で新しいバージョンを作成することができます。"
+        },
+        "add_action": {
+          "tooltip": "新しい{action}を追加します。\n{action}を追加できるのはDraft版のみです。",
+          "label": "{action}を作成"
+        }
+      },
+      "banner": {
+        "draft_version": "このバージョンはDraft版です。正式版を作成するには承認が必要です。"
+      }
+    },
+    "approve_status": {
+      "label": "申請ステータス"
+    },
+    "search": {
+      "label": "検索",
+      "label2": "ActionTypeId / Name で検索"
+    }
+  },
+  "apply": {
+    "list": {
+      "label": "承認ステータス"
+    },
+    "form": {
+      "description": "バージョン {version} の登録申請を行います。\nアクション毎にコメントを追加できます。例: 'sampleKey'を追加した",
+      "placeholder": {
+        "comment": "申請の詳細を記入してください。"
+      }
+    },
+    "messages": {
+      "create_apply": "新しい申請を作成",
+      "cancel_apply": "取り消す",
+      "no_comment": "コメントはまだありません。"
+    }
+  }
+}

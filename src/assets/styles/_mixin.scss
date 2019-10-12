@@ -1,0 +1,222 @@
+@mixin font-size($size: 14, $base: 16) {
+  font-size: $size + px;
+  font-size: ($size / $base) + rem;
+}
+
+@mixin input-solo-flat-dense {
+  font-size: 14px;
+  .v-input__control {
+    min-height: 30px;
+    align-items: baseline;
+  }
+}
+@mixin input-text($height: 38px, $fontSize: 14px) {
+  // padding-top: 0px;
+  // font-size: $fontSize;
+  // .v-input {
+  //   font-size: $fontSize;
+  // }
+  // .v-label {
+  //   font-size: $fontSize;
+  // }
+  // .v-input__slot {
+  //   min-height: $height !important;
+  //   // height: $height;
+  // }
+
+  // align-items: center;
+  // .v-text-field,
+  // .v-input__control {
+  //   // height: 64px;
+  //   align-items: baseline;
+  //   // padding: 0 0  0.75em 0 ;
+  //   margin: 4px 0;
+
+  //   .v-text-field__slot {
+  //     box-sizing: border-box;
+  //     border: 1px solid;
+  //     border-color: #999;
+  //     border-radius: 5px;
+  //     transition: border-color 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  //   }
+  //   input {
+  //     // padding: 0 0.75em 0 0.75em;
+  //     padding: 4px 8px;
+  //     margin: 4px 0;
+  //     // margin: 0 8px;
+  //   }
+  //   .v-input__slot::before,
+  //   ::after {
+  //     display: none;
+  //   }
+  // }
+  // .v-text-field__slot:focus-within {
+  //   border-color: var(--v-primary-base);
+  // }
+
+  // .v-label {
+  //   display: none;
+  //   // font-size: 14px;
+  // }
+}
+
+@mixin checkbox-small {
+  // .v-input--checkbox {
+  //   margin: 0;
+  // }
+  // .v-icon {
+  //   font-size: 20px;
+  // }
+  // .v-label {
+  //   font-size: 14px;
+  // }
+  // .v-input--selection-controls {
+  //   padding: 2px 0;
+  // }
+  // .v-input--selection-controls__ripple {
+  //   transform: scale(0.6);
+  //   left: -15px;
+  // }
+}
+
+@mixin input-textarea($dense: true) {
+  @include input-text;
+  // .v-input__control {
+  //   height: auto;
+  // }
+  .v-text-field__slot {
+    padding: 1px 1px 1px 0;
+    // box-sizing: border-box;
+    // border: 1px solid;
+    // border-color: #999;
+    // border-radius: 5px;
+    // transition: border-color 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .v-input__slot {
+    height: auto;
+  }
+
+  @if $dense {
+    .v-label {
+      top: 9px !important;
+    }
+  }
+
+  textarea {
+    margin-top: 2px !important;
+    // min-height: $height;
+    // padding: 8px 0 8px 8px;
+    // padding: 0 !important;
+  }
+}
+
+@mixin input-select($height: 38px) {
+  @include input-text($height);
+  // .v-select__slot {
+  //   height: $height;
+  //   box-sizing: border-box;
+  //   border: 1px solid;
+  //   border-color: #999;
+  //   border-radius: 5px;
+  //   transition: border-color 600ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  // }
+  // .v-select__selections {
+  //   min-height: $height;
+  //   padding: 0 0 0 8px;
+  // }
+}
+
+@mixin label {
+  label {
+    font-size: 14px;
+  }
+}
+
+@mixin table($border: false) {
+  tbody td,
+  th {
+    font-size: 13px;
+    @include checkbox-small;
+    .v-input--checkbox {
+      width: 1px;
+      min-width: 1px;
+    }
+  }
+
+  tbody {
+    tr[active] {
+      background: #e1f5fe !important;
+    }
+  }
+  .v-data-table-header {
+    th {
+      background: #f5f5f5;
+      color: black !important;
+      white-space: nowrap;
+      * {
+        white-space: nowrap;
+      }
+    }
+    td {
+      border-left: none;
+      border-right: none;
+    }
+    tbody td,
+    thead th {
+      height: 30px;
+      padding: 0 12px;
+    }
+    thead tr {
+      height: 30px;
+    }
+  }
+
+  @if ($border) {
+    table th + th {
+      border-left: 1px solid #dddddd;
+    }
+    table th:first-child {
+      border-left: 1px solid #dddddd;
+    }
+    table th:last-child {
+      border-right: 1px solid #dddddd;
+    }
+
+    table td + td {
+      border-left: 1px solid #dddddd;
+    }
+    table td {
+      border-left: 1px solid #dddddd;
+    }
+    table tr td:last-child {
+      border-right: 1px solid #dddddd;
+    }
+    // tbody tr:last-child td {
+    //   border-bottom: 1px solid #dddddd !important;
+    // }
+  }
+}
+
+@mixin table_border {
+  @include table(true);
+}
+
+@mixin radio {
+  // padding: 10px;
+  input {
+    font-size: 13px;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  i {
+    font-size: 20px;
+  }
+  [class*='__ripple'] {
+    transform: scale(0.8);
+    left: -14px;
+  }
+}
