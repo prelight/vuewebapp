@@ -20,10 +20,9 @@
       ></v-text-field>
       <ButtonDropdown v-model="languageList[0]" :items="languageList" :onClick="handleClick" />
 
-      <v-btn text class="primary--text ml-2" to="/login">
-<!--
-      <v-btn text class="primary--text ml-2" href="https://sonytest.auth.us-east-2.amazoncognito.com/login?response_type=code&client_id=6mdsa320oe530p1r774mkjtt98&redirect_uri=http://localhost:8080/logdash/format">
--->
+      <!-- <v-btn text class="primary--text ml-2" href="https://sonytest.auth.us-east-2.amazoncognito.com/login?response_type=code&client_id=6mdsa320oe530p1r774mkjtt98&redirect_uri=http://localhost:8081/login"> -->
+      <!-- <v-btn text class="primary--text ml-2" to="/login"> -->
+      <v-btn text class="primary--text ml-2" :href="cognito">
         {{ $t('button.login') }}
       </v-btn>
     </v-app-bar>
@@ -196,10 +195,13 @@ export default class Home extends Vue {
 
   selectedLanguage = this.languageList[0].text;
 
+  cognito = "https://sonytest.auth.us-east-2.amazoncognito.com/login?response_type=code&client_id=6mdsa320oe530p1r774mkjtt98&redirect_uri=http://localhost:8081/login";
+  
   handleClick(item) {
     this.selectedItem = item;
     this.selectedLanguage = item.title;
   }
+
 }
 </script>
 

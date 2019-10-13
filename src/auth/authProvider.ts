@@ -1,7 +1,11 @@
 import i18n from '@/i18n';
 import { getItemJson } from '../util/storageUtils';
 
-import cognito from './cognito';
+import axios from 'axios';
+// import { userInfo } from 'os';
+// import cognito from './cognito';
+
+// import cognito from './cognito';
 
 export interface User {
   id: string;
@@ -26,6 +30,7 @@ const TEST_SERVICE_LIST = [
   { id: '3', text: 'HPC', value: 'hpc', icon: 'mdi-application' },
 ];
 
+// export let DEMO_USERS: User[] = [
 export const DEMO_USERS: User[] = [
   {
     id: '0',
@@ -62,12 +67,20 @@ export const DEMO_USERS: User[] = [
   },
 ];
 
+// const checkLogin = (username, password) => {
+//   // const cognitouser = cognito.getUser();
+//   // console.log(cognitouser);
+//   return DEMO_USERS.find(user => user.username === username && user.pass === password);
+// };
 
-const checkLogin = (username, password) => {
-  //const cognitouser = cognito.getUser();
-  //console.log(cognitouser);
-  return DEMO_USERS.find(user => user.username === username && user.pass === password);
-  
+const checkLogin = code => {
+  const token = cognito.getToken(code);
+
+  DEMO_USERS[0].token = token;
+  // const user = new User;
+
+  return DEMO_USERS[0];
+  // return DEMO_USERS.find(user => user.username === username && user.pass === password);
 };
 
 const getCurrentUser = (token: string): Promise<User | void> => {
@@ -83,20 +96,64 @@ const getCurrentUser = (token: string): Promise<User | void> => {
   });
 };
 
+
+
+export const domain = 'https://sonytest.auth.us-east-2.amazoncognito.com';
+export const redirectUrl = 'http://localhost:8081/login';
+export const userPoolClientId = '6mdsa320oe530p1r774mkjtt98';
+
 const authProvider = {
-  login: (username, password): Promise<User> => {
+  login: (code): Promise<User> => {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const userInfo = checkLogin(username, password);
-        if (userInfo) {
-          userInfo.token = 'test_token';
-          resolve(userInfo);
-        } else {
-          reject(i18n.t('login.error'));
+
+      let params = new URLSearchParams();
+      params.append('grant_type', 'authorization_code')
+      params.append('redirect_uri', redirectUrl)
+      params.append('code', code)
+      params.append('client_id', userPoolClientId)
+  
+      return axios.post(domain + '/oauth2/token', params, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
-      }, 500);
-    });
+      })
+      .then(res => {
+        console.log('----------------suzu1-------------------');
+        console.log(res.data.access_token);
+
+        DEMO_USERS[0].token = res.data.access_token;
+        resolve(DEMO_USERS[0]);
+      })
+      .catch(e => {
+        console.log('----------------error1-------------------');
+        console.log(e);
+        reject(i18n.t('login.error'));
+      });
+    })
+    // }).then(user => {
+    //   console.log('----------------suzu2-------------------');
+    //   return user as User;
+    // }).catch(e => {
+    //   console.log('----------------error2-------------------');
+    //   console.log(e);
+    //   return null;
+    // })
   },
+
+  // login: (username, password): Promise<User> => {
+  //   return new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       console.log('kokoha torunoka');
+  //       const userInfo = checkLogin(username, password);
+  //       if (userInfo) {
+  //         userInfo.token = 'test_token';
+  //         resolve(userInfo);
+  //       } else {
+  //         reject(i18n.t('login.error'));
+  //       }
+  //     }, 500);
+  //   });
+  // },
 
   logout: () => {
     // remove user from local storage to log user out

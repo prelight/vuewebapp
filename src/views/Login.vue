@@ -2,6 +2,7 @@
   <div id="app">
     <v-app id="inspire">
       <v-content>
+        <!--
         <v-container class="fill-height" fluid>
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="4">
@@ -13,7 +14,6 @@
                   <v-row justify="center">
                     <v-toolbar-title>
                       <v-col>
-                        <!-- <img class="img pt-2" src="../static/logdash-logo.png" width="120" /> -->
                         <h6 class="title">
                           {{ $t('login.title') }}
                         </h6>
@@ -65,6 +65,7 @@
             </v-btn>
           </v-snackbar>
         </v-container>
+        -->
       </v-content>
     </v-app>
   </div>
@@ -98,6 +99,24 @@ export default class ActionLogFormat extends Vue {
 
   get message() {
     return this.$store.getters['notification/message'];
+  }
+
+  created() {
+    if (this.$route.query.code) {
+      const code = this.$route.query.code;
+      const l = this.loader;
+      this[l] = !this[l];
+
+      this.$store
+        .dispatch('account/login', { code })
+        .then(() => {
+          this.clearNotification();
+        })
+        .finally(() => (this.loading = null));
+    }
+    else {
+      console.log('xxxxx');
+    }
   }
 
   checkLogin(this: any) {

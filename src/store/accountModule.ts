@@ -10,9 +10,12 @@ interface State {
 
 const state = { loggedIn: false, user: {}, service: {}, loading: false };
 const actions = {
-  async login({ dispatch, commit }, { username, password, transitionHome = true }) {
-    await authProvider.login(username, password).then(
+  // async login({ dispatch, commit }, { username, password, transitionHome = true }) {
+  async login({ dispatch, commit }, { code, transitionHome = true }) {
+    // await authProvider.login(username, password).then(
+    await authProvider.login(code).then(
       user => {
+        console.log('********* 0001');
         commit('loginSuccess', user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
