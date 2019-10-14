@@ -1,6 +1,8 @@
 import i18n from '@/i18n';
 import { getItemJson } from '../util/storageUtils';
 
+
+import cognitoInfo from '../static/cognitoInfo';
 import axios from 'axios';
 // import { userInfo } from 'os';
 // import cognito from './cognito';
@@ -99,7 +101,7 @@ const getCurrentUser = (token: string): Promise<User | void> => {
 
 
 export const domain = 'https://sonytest.auth.us-east-2.amazoncognito.com';
-export const redirectUrl = 'http://localhost:8081/login';
+export const redirectUrl = 'http://localhost:8888/login';
 export const userPoolClientId = '6mdsa320oe530p1r774mkjtt98';
 
 const authProvider = {
@@ -111,6 +113,8 @@ const authProvider = {
       params.append('redirect_uri', redirectUrl)
       params.append('code', code)
       params.append('client_id', userPoolClientId)
+
+      console.log(cognitoInfo.STR);
   
       return axios.post(domain + '/oauth2/token', params, {
         headers: {
