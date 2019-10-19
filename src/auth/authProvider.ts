@@ -235,7 +235,7 @@ const authProvider = {
 
   getCurrentUser,
 
-  getServiceList: (token: string) => {
+  getServiceList: async (token: string): Promise<any> => {
     Amplify.configure({
       // Auth: {
       //     identityPoolId: 'us-east-2:407c0b68-9a34-4fa1-a916-47bd46686284', //REQUIRED - Amazon Cognito Identity Pool ID
@@ -247,21 +247,28 @@ const authProvider = {
         endpoints: [
           {
               name: "AmplifyTest",
-              // endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1"
-              endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
+              endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1"
+              //endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
           }
         ]
       }
     });
 
-    Amplify.API.get('AmplifyTest', '/logdash/auth/ssss')
-    .then(res => {
-      console.log('******* 005');
-      return Promise.resolve(res);
-    })
-    .cache(e => {
-      return Promise.reject(e);
-    });
+    // Amplify.API.get('AmplifyTest', '/logdash/auth/ssss')
+    // const ret = await Amplify.API.get('AmplifyTest', '/logdash/auth/ssss')
+    const ret = await Amplify.API.get('AmplifyTest', '/guest')
+    console.log('******* 005');
+    console.log(ret);
+    return ret;
+    // .then(res => {
+    //   console.log('******* 005');
+    //   console.log(res);
+    //   return Promise.resolve(res);
+    // })
+    // .cache(e => {
+    //   return Promise.reject(e);
+    // });
+    // // console.log('******* 006');
 
     // .then((
     //   return 

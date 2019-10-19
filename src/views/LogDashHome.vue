@@ -213,8 +213,8 @@ export default class Home extends Vue {
         endpoints: [
           {
               name: "AmplifyTest",
-              // endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1"
-              endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
+              endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1"
+              // endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
               // endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com"
           }
         ]
@@ -223,7 +223,8 @@ export default class Home extends Vue {
 
     console.log('------ API START ------');
     // API.get('AmplifyTest', '/alpha1/logdash/auth/ssss')
-    API.get('AmplifyTest', '/logdash/auth/ssss')
+    // API.get('AmplifyTest', '/logdash/auth/ssss')
+    API.get('AmplifyTest', '/guest')
     .then(res => {
       console.log('------ API OK ------');
       console.log(res);

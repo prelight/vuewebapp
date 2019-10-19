@@ -57,7 +57,9 @@ const actions = {
   },
   async getServiceList({ commit, dispatch }, token = 'token') {
     commit('loading', true);
+    console.log('------------- 001');
     const data = await authProvider.getServiceList(token);
+    console.log('------------- 008');
     commit('loading', false);
     return data;
   },

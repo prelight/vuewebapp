@@ -651,6 +651,7 @@ export default class ActionLogFormat extends Vue {
     this.isInitialized = false;
     this.serviceList = await this.getServiceList();
     console.log('******* 010');
+    console.log(this.serviceList);
 
     const defaultService = getItemJson(sessionStorage, 'defaultService', null);
 
