@@ -107,6 +107,8 @@ export default class ActionLogFormat extends Vue {
       const l = this.loader;
       this[l] = !this[l];
 
+      console.log('******* code=' + code);
+
       this.$store
         .dispatch('account/login', { code })
         .then(() => {

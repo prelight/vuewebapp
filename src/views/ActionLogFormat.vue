@@ -650,6 +650,7 @@ export default class ActionLogFormat extends Vue {
   async init() {
     this.isInitialized = false;
     this.serviceList = await this.getServiceList();
+    console.log('******* 010');
 
     const defaultService = getItemJson(sessionStorage, 'defaultService', null);
 
@@ -664,6 +665,37 @@ export default class ActionLogFormat extends Vue {
   }
 
   getServiceList() {
+    // Amplify.configure({
+    //   // Auth: {
+    //   //     identityPoolId: 'us-east-2:407c0b68-9a34-4fa1-a916-47bd46686284', //REQUIRED - Amazon Cognito Identity Pool ID
+    //   //     region: 'us-east-2', // REQUIRED - Amazon Cognito Region
+    //   //     userPoolId: 'us-east-2_I3nRjackN', //OPTIONAL - Amazon Cognito User Pool ID
+    //   //     userPoolWebClientId: '6mdsa320oe530p1r774mkjtt98', //OPTIONAL - Amazon Cognito Web Client ID
+    //   // },
+    //   API: {
+    //     endpoints: [
+    //       {
+    //           name: "AmplifyTest",
+    //           // endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1"
+    //           endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
+    //       }
+    //     ]
+    //   }
+    // });
+
+    // Amplify.API.get('AmplifyTest', '/logdash/auth/ssss')
+    // .then(res => {
+    //   console.log('******* 005');
+    //   console.log(res);
+    //   return res;
+    // })
+    // .cache(e => {
+    //   return e;
+    // });
+
+    // // .then((
+    // //   return 
+    // // ))
     return this.$store.dispatch('account/getServiceList');
   }
 

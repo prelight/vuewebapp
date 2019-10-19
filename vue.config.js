@@ -33,8 +33,4 @@ module.exports = {
       enableInSFC: true,
     },
   },
-  devServer: {
-    port: 8888,
-    disableHostCheck: true,
-  },
 };

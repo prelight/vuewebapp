@@ -1,22 +1,9 @@
-
-// // https://sonytest.auth.us-east-2.amazoncognito.com/login?response_type=code&client_id=6mdsa320oe530p1r774mkjtt98&redirect_uri=http://localhost:8081/login
-// export const cognitoInfo = {
-//   domain : 'sonytest.auth.us-east-2.amazoncognito.com',
-//   redirectUrl : 'http://localhost:8081/login',
-//   userPoolClientId : '6mdsa320oe530p1r774mkjtt98'
-// };
-module cognitoInfo {
-  export const STR = "...";
+namespace cognitoInfo {
+  // export const BASE_URL = 'https://logdash-dev.auth.us-west-2.amazoncognito.com';
+  export const BASE_URL = 'https://sdp-console-dev.auth.us-west-2.amazoncognito.com';
+  export const REDIRECT_URL = 'http://localhost:8080/login';
+  // export const USERPOOL_CLIENTID = '5ng9j87137jss0tv8951a3225a';
+  export const USERPOOL_CLIENTID = '239blhks3dhqs3k8f1ai9nhpa';
 }
-
-// export namespace cognitoInfo {
-//   export const NAME = "myLibrary";
-//   export const LICENSE = "MIT";
-//   export const VERSION = "1.0.1";
-//   export const PATH = "http://example.jp/path/to/"
-//   export const domain = 'sonytest.auth.us-east-2.amazoncognito.com';
-//   export const redirectUrl = 'http://localhost:8081/login';
-//   export const userPoolClientId = '6mdsa320oe530p1r774mkjtt98';
-// }
 
 export default cognitoInfo;

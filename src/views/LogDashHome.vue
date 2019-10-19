@@ -20,11 +20,10 @@
       ></v-text-field>
       <ButtonDropdown v-model="languageList[0]" :items="languageList" :onClick="handleClick" />
 
-      <!-- <v-btn text class="primary--text ml-2" href="https://sonytest.auth.us-east-2.amazoncognito.com/login?response_type=code&client_id=6mdsa320oe530p1r774mkjtt98&redirect_uri=http://localhost:8888/login"> -->
-      <!-- <v-btn text class="primary--text ml-2" to="/login"> -->
-      <v-btn text class="primary--text ml-2" :href="cognito">
+      <v-btn text class="primary--text ml-2" :href="cognitoUrl">
         {{ $t('button.login') }}
       </v-btn>
+      <v-btn text class="primary--text ml-2" @click="clickTest">test</v-btn>
     </v-app-bar>
     <!-- <v-flex xs6> -->
 
@@ -180,8 +179,12 @@
 </i18n>
 
 <script lang="ts">
+// global.fetch = require('node-fetch');
 import { Component, Vue } from 'vue-property-decorator';
 import ButtonDropdown from '@/components/ButtonDropdown.vue';
+import cognitoInfo from '@/static/cognitoInfo';
+
+import Amplify,{ Auth,API } from 'aws-amplify';
 @Component({
   components: { ButtonDropdown },
 })
@@ -195,13 +198,42 @@ export default class Home extends Vue {
 
   selectedLanguage = this.languageList[0].text;
 
-  cognito = "https://sonytest.auth.us-east-2.amazoncognito.com/login?response_type=code&client_id=6mdsa320oe530p1r774mkjtt98&redirect_uri=http://localhost:8888/login";
-  
+  // cognito = "https://logdash-dev.auth.us-west-2.amazoncognito.com/login?response_type=code&client_id=5ng9j87137jss0tv8951a3225a&redirect_uri=http://localhost:8080/login";
+  cognitoUrl = `${cognitoInfo.BASE_URL}/login?response_type=code&client_id=${cognitoInfo.USERPOOL_CLIENTID}&redirect_uri=${cognitoInfo.REDIRECT_URL}`;
+
   handleClick(item) {
     this.selectedItem = item;
     this.selectedLanguage = item.title;
-  }
+  };
 
+  clickTest(item) {
+    console.log('hashimoto kanna');
+    Amplify.configure({
+      API: {
+        endpoints: [
+          {
+              name: "AmplifyTest",
+              // endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1"
+              endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
+              // endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com"
+          }
+        ]
+      }
+    });
+
+    console.log('------ API START ------');
+    // API.get('AmplifyTest', '/alpha1/logdash/auth/ssss')
+    API.get('AmplifyTest', '/logdash/auth/ssss')
+    .then(res => {
+      console.log('------ API OK ------');
+      console.log(res);
+      return res;
+    })
+    .cache(e => {
+      console.log('------ API NG ------');
+      return e;
+    });
+  }
 }
 </script>
 

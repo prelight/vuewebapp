@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@handsontable/vue": "4.0.0",
-    "aws-sdk": "2.545.0",
+    "aws-amplify": "1.2.2",
     "axios": "0.19.0",
     "babel-polyfill": "6.26.0",
     "core-js": "^2.6.5",

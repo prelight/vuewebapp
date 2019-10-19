@@ -270,11 +270,14 @@ export default class Home extends Vue {
   fav = true;
 
   user: User = {
-    id: '',
-    pass: '',
+    // id: '',
+    // pass: '',
     username: '',
     serviceList: [],
-    token: 'string',
+    accessToken: 'string',
+    refreshToken: 'string',
+    idToken: 'string',
+    sub: 'string',
   };
 
   currentUserName = '';

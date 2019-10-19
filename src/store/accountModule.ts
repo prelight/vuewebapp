@@ -1,5 +1,6 @@
 import router from '@/router/index';
 import authProvider, { User, ServiceIdInfo } from '@/auth/authProvider';
+import cognitoInfo from '@/static/cognitoInfo';
 
 interface State {
   loggedIn: boolean;
@@ -15,10 +16,18 @@ const actions = {
     // await authProvider.login(username, password).then(
     await authProvider.login(code).then(
       user => {
-        console.log('********* 0001');
         commit('loginSuccess', user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
+        // setLocalStorage(user);
+        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.LastAuthUser`, user.sub);
+        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.sub}.accessToken`, user.accessToken);
+        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.sub}.idToken`, user.idToken);
+        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.sub}.refreshToken`, user.refreshToken);
+        // localStorage.setItem('CognitoIdentityServiceProvider.' + USER_POOL_WEB_CLIENT_ID + '.' + userInfo.data.sub + '.idToken', token.data.id_token)
+        // localStorage.setItem('CognitoIdentityServiceProvider.' + USER_POOL_WEB_CLIENT_ID + '.' + userInfo.data.sub + '.refreshToken', token.data.refresh_token)
+        // // localStorage.setItem('CognitoIdentityServiceProvider.' + USER_POOL_WEB_CLIENT_ID + '.' + userInfo.data.sub + '.clockDrift', 0) ??
+        // localStorage.setItem('CognitoIdentityServiceProvider.' + USER_POOL_WEB_CLIENT_ID + '.LastAuthUser', userInfo.data.sub)
         if (transitionHome) {
           router.push(user.homePage);
         }
@@ -53,6 +62,11 @@ const actions = {
     return data;
   },
 };
+
+// setLocalStorage() {
+//   console.log('----');
+//   //return null;
+// };
 
 const mutations = {
   loading(state: State, loading: boolean) {
