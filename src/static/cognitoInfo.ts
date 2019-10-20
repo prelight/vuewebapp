@@ -10,6 +10,8 @@ namespace cognitoInfo {
   export const BASE_URL = 'https://sonytest.auth.us-east-2.amazoncognito.com';
   export const REDIRECT_URL = 'http://localhost:8080/login';
   export const USERPOOL_CLIENTID = '6mdsa320oe530p1r774mkjtt98';
+  export const POOL_ID = 'us-east-2:407c0b68-9a34-4fa1-a916-47bd46686284';
+  
 }
 
 export default cognitoInfo;

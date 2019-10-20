@@ -20,14 +20,18 @@ const actions = {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
         // setLocalStorage(user);
-        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.LastAuthUser`, user.sub);
-        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.sub}.accessToken`, user.accessToken);
-        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.sub}.idToken`, user.idToken);
-        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.sub}.refreshToken`, user.refreshToken);
-        // localStorage.setItem('CognitoIdentityServiceProvider.' + USER_POOL_WEB_CLIENT_ID + '.' + userInfo.data.sub + '.idToken', token.data.id_token)
-        // localStorage.setItem('CognitoIdentityServiceProvider.' + USER_POOL_WEB_CLIENT_ID + '.' + userInfo.data.sub + '.refreshToken', token.data.refresh_token)
-        // // localStorage.setItem('CognitoIdentityServiceProvider.' + USER_POOL_WEB_CLIENT_ID + '.' + userInfo.data.sub + '.clockDrift', 0) ??
-        // localStorage.setItem('CognitoIdentityServiceProvider.' + USER_POOL_WEB_CLIENT_ID + '.LastAuthUser', userInfo.data.sub)
+        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.LastAuthUser`, user.username);
+        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.username}.accessToken`, user.accessToken);
+        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.username}.idToken`, user.idToken);
+        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.username}.refreshToken`, user.refreshToken);
+        localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.username}.clockDrift`, '0');
+        // localStorage.setItem(`aws.cognito.identity-id.${cognitoInfo.POOL_ID}`, 'us-east-2:c2ccb4d8-565b-499e-8a5d-39d34458462f');
+        // localStorage.setItem(`aws.cognito.identity-providers.${cognitoInfo.POOL_ID}`, 'cognito-idp.us-east-2.amazonaws.com/us-east-2_I3nRjackN');
+        // localStorage.setItem('CognitoIdentityServiceProvider.6mdsa320oe530p1r774mkjtt98.test.userData', '{"UserAttributes":[{"Name":"sub","Value":"2f5d0cc3-ca69-42a1-be39-5b480011a784"},{"Name":"email_verified","Value":"true"},{"Name":"email","Value":"prelight2006@yahoo.co.jp"}],"Username":"test"}');
+
+//CognitoIdentityServiceProvider.6mdsa320oe530p1r774mkjtt98.test.userData
+
+        // localStorage.setItem(`CognitoIdentityServiceProvider.${cognitoInfo.USERPOOL_CLIENTID}.${user.username}.refreshToken`, user.refreshToken);
         if (transitionHome) {
           router.push(user.homePage);
         }

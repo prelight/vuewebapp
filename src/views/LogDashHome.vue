@@ -209,31 +209,75 @@ export default class Home extends Vue {
   clickTest(item) {
     console.log('hashimoto kanna');
     Amplify.configure({
-      API: {
-        endpoints: [
-          {
-              name: "AmplifyTest",
-              endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1"
-              // endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
-              // endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com"
-          }
-        ]
-      }
+        Auth: {
+            identityPoolId: 'us-east-2:407c0b68-9a34-4fa1-a916-47bd46686284',
+            region: 'us-east-2',
+            userPoolId: 'us-east-2_I3nRjackN',
+            userPoolWebClientId: '6mdsa320oe530p1r774mkjtt98',
+        },
+        API: {
+            endpoints: [
+                {
+                  region: 'us-east-2',
+                  name: "AmplifyTest",
+                  endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1",
+                }
+            ]
+        }
     });
 
-    console.log('------ API START ------');
-    // API.get('AmplifyTest', '/alpha1/logdash/auth/ssss')
-    // API.get('AmplifyTest', '/logdash/auth/ssss')
-    API.get('AmplifyTest', '/guest')
-    .then(res => {
-      console.log('------ API OK ------');
-      console.log(res);
-      return res;
+    const username = 'test';
+    const password = 'okamoto1234';
+    Amplify.Auth.signIn(username, password)
+    .then(function (data) {
+      console.log(data);
+      alert('サインインに成功しました');
+      var apiName = 'AmplifyTest';
+      var path = '/member';
+      // var path = '/guest';
+      Amplify.API.get(apiName, path)
+      .then(function (response) {
+        console.log('--------- OK ------------');
+        console.log(response);
+      })
+      .catch(function (err) {
+        console.log('--------- NG ------------');
+        console.log(err);
+      });
     })
-    .cache(e => {
-      console.log('------ API NG ------');
-      return e;
+    .catch(function (err) {
+      console.log(err);
+      alert(err);
+      return;
     });
+
+    // Amplify.configure({
+    //   API: {
+    //     endpoints: [
+    //       {
+    //           name: "AmplifyTest",
+    //           endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1"
+    //           // endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
+    //           // endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com"
+    //       }
+    //     ]
+    //   }
+    // });
+
+    // console.log('------ API START ------');
+    // // API.get('AmplifyTest', '/alpha1/logdash/auth/ssss')
+    // // API.get('AmplifyTest', '/logdash/auth/ssss')
+    // // API.get('AmplifyTest', '/guest')
+    // API.get('AmplifyTest', '/guest')
+    // .then(res => {
+    //   console.log('------ API OK ------');
+    //   console.log(res);
+    //   return res;
+    // })
+    // .cache(e => {
+    //   console.log('------ API NG ------');
+    //   return e;
+    // });
   }
 }
 </script>

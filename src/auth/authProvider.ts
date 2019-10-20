@@ -151,7 +151,8 @@ const authProvider = {
         const token: any = await getToken(code);
         const userInfo: any = await getUserInfo(token);
         const user: User = {
-          username: userInfo.data.email,
+          // username: userInfo.data.email,
+          username: userInfo.data.username,
           sub: userInfo.data.sub,
           accessToken: token.data.access_token,
           idToken: token.data.id_token,
@@ -237,18 +238,19 @@ const authProvider = {
 
   getServiceList: async (token: string): Promise<any> => {
     Amplify.configure({
-      // Auth: {
-      //     identityPoolId: 'us-east-2:407c0b68-9a34-4fa1-a916-47bd46686284', //REQUIRED - Amazon Cognito Identity Pool ID
-      //     region: 'us-east-2', // REQUIRED - Amazon Cognito Region
-      //     userPoolId: 'us-east-2_I3nRjackN', //OPTIONAL - Amazon Cognito User Pool ID
-      //     userPoolWebClientId: '6mdsa320oe530p1r774mkjtt98', //OPTIONAL - Amazon Cognito Web Client ID
-      // },
+      Auth: {
+        identityPoolId: 'us-east-2:407c0b68-9a34-4fa1-a916-47bd46686284',
+        region: 'us-east-2',
+        userPoolId: 'us-east-2_I3nRjackN',
+        userPoolWebClientId: '6mdsa320oe530p1r774mkjtt98',
+      },
       API: {
         endpoints: [
           {
-              name: "AmplifyTest",
-              endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1"
-              //endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
+            name: "AmplifyTest",
+            endpoint: "https://pwoihyr22i.execute-api.us-east-2.amazonaws.com/v1",
+            region: 'us-east-2',
+            //endpoint: "https://gi94xc5bhj.execute-api.us-west-2.amazonaws.com/alpha1"
           }
         ]
       }
@@ -256,7 +258,8 @@ const authProvider = {
 
     // Amplify.API.get('AmplifyTest', '/logdash/auth/ssss')
     // const ret = await Amplify.API.get('AmplifyTest', '/logdash/auth/ssss')
-    const ret = await Amplify.API.get('AmplifyTest', '/guest')
+    // const ret = await Amplify.API.get('AmplifyTest', '/guest')
+    const ret = await Amplify.API.get('AmplifyTest', '/member')
     console.log('******* 005');
     console.log(ret);
     return ret;
