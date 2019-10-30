@@ -19,7 +19,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo "Webhook was triggerd by ${CODEBUILD_WEBHOOK_TRIGGER}"
-      - sh ./scripts/build.sh ${mode}
+      - sh ./scripts/build.sh --mode ${env}
   post_build:
     commands:
       - sh ./scripts/deploy.sh
