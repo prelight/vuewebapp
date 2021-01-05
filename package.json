@@ -13,7 +13,7 @@
   "dependencies": {
     "@handsontable/vue": "4.0.0",
     "aws-sdk": "2.545.0",
-    "axios": "0.19.0",
+    "axios": "0.21.1",
     "babel-polyfill": "6.26.0",
     "core-js": "^2.6.5",
     "handsontable": "7.0.2",
